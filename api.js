@@ -1,22 +1,9 @@
+var $ = require('jquery');
+
 module.exports = {
-	getUsers: function() {
-		return [
-			{
-		    name: 'Alex',
-		    dog: 'Bacos'		
-			},
-			{
-				name: 'Travis',
-				dog: 'Gil'
-			},
-      {
-      	name: 'Michael',
-      	dog: 'Ed'
-      },
-      {
-      	name: 'Mark',
-      	dog: 'Reka'
-      }
-		]
+	getFXRates: function() {
+		$.getJSON('http://api.fixer.io/latest?base=USD', function(data) {
+			console.log(data);
+		})
 	}
 }

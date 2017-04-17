@@ -1,8 +1,3 @@
-var api = require('./api.js');
 var $ = require('jquery');
-
-var users = api.getUsers();
-
-$.each(users, function(index, user) {
-  $(document.body).append(index + '<p> name: ' + user.name + ' dog: ' + user.dog + '</p>')
-})
+var api = require('./api.js');
+var users = api.getFXRates();

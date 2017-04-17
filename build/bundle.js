@@ -44,40 +44,12 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var api = __webpack_require__(1);
-	var $ = __webpack_require__(2);
-
-	var users = api.getUsers();
-
-	$.each(users, function(index, user) {
-	  $(document.body).append(index + '<p> name: ' + user.name + ' dog: ' + user.dog + '</p>')
-	})
+	var $ = __webpack_require__(1);
+	var api = __webpack_require__(2);
+	var users = api.getFXRates();
 
 /***/ },
 /* 1 */
-/***/ function(module, exports) {
-
-	module.exports = {
-		getUsers: function() {
-			return [
-				{
-			    name: 'Alex',
-			    dog: 'Bacos'		
-				},
-				{
-					name: 'Travis',
-					dog: 'Gil'
-				},
-	      {
-	      	name: 'Michael',
-	      	dog: 'Ed'
-	      }
-			]
-		}
-	}
-
-/***/ },
-/* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10334,6 +10306,20 @@
 	return jQuery;
 	} );
 
+
+/***/ },
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var $ = __webpack_require__(1);
+
+	module.exports = {
+		getFXRates: function() {
+			$.getJSON('http://api.fixer.io/latest?base=USD', function(data) {
+				console.log(data);
+			})
+		}
+	}
 
 /***/ }
 /******/ ]);
