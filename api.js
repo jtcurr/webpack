@@ -6,4 +6,21 @@ module.exports = {
 			console.log(data);
 		});
 	}
+
+	getUsers: () => {
+		return [
+      {
+      	name: 'Alex',
+      	dog: 'Gil'
+      },
+      {
+      	name: 'Travis',
+      	dog: 'Bacos'
+      },
+      {
+      	name: 'Dianers',
+      	dog: 'Skittles'
+      }
+		]
+	}
 };
