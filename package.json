@@ -1,0 +1,12 @@
+{
+  "name": "webpack",
+  "version": "1.0.0",
+  "description": "webpack",
+  "main": "index.js",
+  "repository": "https://github.com/jtcurr/webpack.git",
+  "author": "John Currie <johntcurrie@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "1.14.0"
+  }
+}
