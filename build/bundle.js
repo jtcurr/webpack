@@ -44,9 +44,14 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var $ = __webpack_require__(1);
 	var api = __webpack_require__(2);
 	var users = api.getFXRates();
+	var welcomeUser = __webpack_require__(3);
+
+	welcomeUser('Jones');
 
 /***/ },
 /* 1 */
@@ -10311,15 +10316,30 @@
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var $ = __webpack_require__(1);
 
 	module.exports = {
-		getFXRates: function() {
-			$.getJSON('http://api.fixer.io/latest?base=USD', function(data) {
+		getFXRates: function getFXRates() {
+			$.getJSON('http://api.fixer.io/latest?base=USD', function (data) {
 				console.log(data);
-			})
+			});
 		}
-	}
+	};
+
+/***/ },
+/* 3 */
+/***/ function(module, exports) {
+
+	var welcomeUser;
+
+	welcomeUser = function(name) {
+	  return console.log("hello " + name + " how are you");
+	};
+
+	module.exports = welcomeUser;
+
 
 /***/ }
 /******/ ]);
