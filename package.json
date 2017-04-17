@@ -8,5 +8,12 @@
   "license": "MIT",
   "devDependencies": {
     "webpack": "1.14.0"
+  },
+  "scripts": {
+    "webpackfromterminal": "webpack ./app.js ./bundle.js",
+    "webpack": "webpack"
+  },
+  "dependencies": {
+    "jquery": "^3.2.1"
   }
 }
