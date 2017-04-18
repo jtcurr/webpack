@@ -6,19 +6,38 @@ export default class FxRatesComponent extends Component {
 		super(props);
 
 		this.state = {
-			rates: {}
-		}
-	}
+			fixerResponse: []
+		};
+	};
+
+	componentDidMount() {
+		api.getFXRates(this.props.baseCurrency, fixerResponse => {
+			this.setState({
+				fixerResponse
+			});
+		});
+
+	};
 
 	render() {
-    let rate = api.getFXRates();
-		componentDidMount() {
-      this.setState({
-      	rates: rate
-      })
+		let dailyRates = [];
+		const { fixerResponse: { rates } } = this.state;
+		const { fixerResponse: { date } } = this.state;
+
+		const { baseCurrency } = this.props;
+
+		for(const currency in rates) {
+			const rate = rates[currency];
+			dailyRates.push(<p key = { currency }>{ currency } - { rate } </p>);
 		}
-		
-	}
+
+		return (
+      <div>
+      <h2> Base { baseCurrency } Date { date }</h2>
+      { dailyRates }
+      </div>
+		);
+	};
 
 
 }
