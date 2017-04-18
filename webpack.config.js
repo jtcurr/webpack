@@ -26,8 +26,18 @@ module.exports = {
 		  	loader: 'babel-loader',
 		  	exclude: /node_modules/,
 		  	query: {
-		  		presets: ['es2015']
+		  		presets: ['es2015', 'react']
 		  	}
+		  },
+		  {
+        test: /\.ts/,
+        loader: 'ts-loader',
+        include: path.resolve(__dirname, 'ts')
+		  },
+		  {
+		  	test: /\.ya?ml$/,
+		  	loaders: ['json-loader', 'yaml-loader'],
+		  	include: path.resolve(__dirname, 'config')
 		  }
 		]
 	}

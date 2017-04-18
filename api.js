@@ -5,7 +5,7 @@ module.exports = {
 		$.getJSON('http://api.fixer.io/latest?base=USD', function(data) {
 			console.log(data);
 		});
-	}
+	},
 
 	getUsers: () => {
 		return [
@@ -21,6 +21,6 @@ module.exports = {
       	name: 'Dianers',
       	dog: 'Skittles'
       }
-		]
+		];
 	}
 };
