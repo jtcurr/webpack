@@ -7,39 +7,54 @@ module.exports = {
 		filename: 'bundle.js'
 	},
 	module: {
-		preLoaders : [
-      {
+		rules: [
+		  {
       	test: /\.js$/,
       	loader: 'eslint-loader',
+      	enforce: 'pre',
       	exclude: /node_modules/,
       	query: require(path.resolve(__dirname, 'eslint.config.js'))
-      }
-		],
-		loaders: [
+      },
 		  {
 		  	test: /\.coffee$/,
-		  	loader:'coffee-loader',
+		  	use:'coffee-loader',
 		  	exclude: /node_modules/
+		  },
+		  {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
 		  },
 		  {
 		  	test: /\.js$/,
 		  	loader: 'babel-loader',
 		  	exclude: /node_modules/,
-		  	query: {
-		  		presets: ['es2015', 'react']
+		  	options: {
+		  		presets: ['react', ["es2015", {"modules": false}]]
 		  	}
 		  },
 		  {
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: "css-loader!sass-loader"
+        })
+		  },
+		  {
         test: /\.ts/,
-        loader: 'ts-loader',
+        use: 'ts-loader',
         include: path.resolve(__dirname, 'ts')
 		  },
 		  {
 		  	test: /\.ya?ml$/,
-		  	loaders: ['json-loader', 'yaml-loader'],
+		  	use: ['json-loader', 'yaml-loader'],
 		  	include: path.resolve(__dirname, 'config')
 		  }
-		]
+		],
+		devServer: {
+			contentBase: path.resolve(__dirname, 'build'),
+			inline: true,
+			port: 3000
+		}
 	}
 
 }

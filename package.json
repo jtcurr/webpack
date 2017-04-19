@@ -16,16 +16,18 @@
     "coffee-script": "^1.12.5",
     "eslint": "^3.19.0",
     "eslint-loader": "^1.7.1",
+    "extract-text-webpack-plugin": "^2.1.0",
     "json-loader": "^0.5.4",
     "ts-loader": "^2.0.3",
     "typescript": "^2.2.2",
-    "webpack": "1.14.0",
+    "webpack": "2.2.1",
     "webpack-dev-server": "^2.4.2",
     "yaml-loader": "^0.4.0"
   },
   "scripts": {
     "webpackfromterminal": "webpack ./app.js ./bundle.js",
-    "webpack": "webpack"
+    "webpack": "webpack",
+    "webpack-dev-server": "webpack-dev-server"
   },
   "dependencies": {
     "jquery": "^3.2.1",
