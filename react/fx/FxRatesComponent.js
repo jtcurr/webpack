@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import api from '../../api';
+import './style.css';
 
 export default class FxRatesComponent extends Component {
 	constructor(props) {
@@ -32,7 +33,7 @@ export default class FxRatesComponent extends Component {
 		}
 
 		return (
-      <div>
+      <div id='fxContainer'>
       <h2> Base { baseCurrency } Date { date }</h2>
       { dailyRates }
       </div>
