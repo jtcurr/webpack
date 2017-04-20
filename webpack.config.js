@@ -1,4 +1,9 @@
 var path = require('path');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var webpack = require('webpack');
+var htmlWebpackPlugin = require('html-webpack-plugin');
+var cleanWebpackPlugin = require('clean-webpack-plugin');
+var optimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
 	entry: './app.js',
@@ -49,12 +54,12 @@ module.exports = {
 		  	use: ['json-loader', 'yaml-loader'],
 		  	include: path.resolve(__dirname, 'config')
 		  }
-		],
-		devServer: {
-			contentBase: path.resolve(__dirname, 'build'),
-			inline: true,
-			port: 3000
-		}
+		]
+	},
+	devServer: {
+	  contentBase: path.resolve(__dirname, 'build'),
+		inline: true,
+		port: 3000
 	}
 
 }
