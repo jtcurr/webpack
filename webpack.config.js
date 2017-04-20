@@ -26,16 +26,17 @@ module.exports = {
 		  	exclude: /node_modules/
 		  },
 		  {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader']
-		  },
-		  {
 		  	test: /\.js$/,
 		  	loader: 'babel-loader',
 		  	exclude: /node_modules/,
 		  	options: {
 		  		presets: ['react', ["es2015", {"modules": false}]]
 		  	}
+		  },
+		  {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        loaders: ['style-loader', 'css-loader']
 		  },
 		  {
         test: /\.scss$/,
