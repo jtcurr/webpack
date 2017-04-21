@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import api from '../../api';
-import './style.css';
+import api from '../../apis/users';
+require('./style');
 
 export default class UsersComponents extends Component {
   constructor(props) {
@@ -20,11 +20,13 @@ export default class UsersComponents extends Component {
   render() {
   	const users = this.state.users.map((user, index) => {
   		const { name, dog } = user;
-  		return (<p key={ index }>{ index } - { name } has { dog }</p>);
+  		return (<p key={ index }><span className='badge'>{ index }</span> - { name } has { dog }</p>);
   	});
   	  return (
   	  	<div id='userContainer'>
+        <i className="fa fa-eyedropper" aria-hidden="true">
   	  		{ users }
+        </i>
   	  	</div>
   	  );
   };

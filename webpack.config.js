@@ -1,12 +1,12 @@
 var path = require('path');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+//var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var webpack = require('webpack');
-var htmlWebpackPlugin = require('html-webpack-plugin');
-var cleanWebpackPlugin = require('clean-webpack-plugin');
-var optimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
+// var htmlWebpackPlugin = require('html-webpack-plugin');
+// var cleanWebpackPlugin = require('clean-webpack-plugin');
+// var optimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
-	entry: './app.js',
+	entry: __dirname,
 	output: {
 		path: path.join(__dirname, 'build'),
 		filename: 'bundle.js'
@@ -35,15 +35,15 @@ module.exports = {
 		  },
 		  {
         test: /\.css$/,
-        exclude: /node_modules/,
         loaders: ['style-loader', 'css-loader']
 		  },
 		  {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: "css-loader!sass-loader"
-        })
+        loaders: ['style-loader', 'css-loader', 'sass-loader']
+		  },
+		  {
+		  	test: /\.(png|woff|woff2|eot|ttf|svg)(\?.*$|$)/, 
+		  	loader:'url-loader?limit=100000'
 		  },
 		  {
         test: /\.ts/,
@@ -56,6 +56,13 @@ module.exports = {
 		  	include: path.resolve(__dirname, 'config')
 		  }
 		]
+	},
+	resolve: {
+    extensions: ['.js', '.coffee', '.ts', '.scss', '.css'],
+    alias: {
+    	api$: path.resolve(__dirname, 'api.js'),
+    	Api: path.resolve(__dirname, 'apis')
+    }
 	},
 	devServer: {
 	  contentBase: path.resolve(__dirname, 'build'),

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import api from '../../api';
-import './style.css';
+import api from '../../apis/users';
+require('./style');
 
 export default class FxRatesComponent extends Component {
 	constructor(props) {
@@ -29,13 +29,15 @@ export default class FxRatesComponent extends Component {
 
 		for(const currency in rates) {
 			const rate = rates[currency];
-			dailyRates.push(<p key = { currency }>{ currency } - { rate } </p>);
+			dailyRates.push(<li className='list-group-item' key={ currency }>{ currency } - { rate } </li>);
 		}
 
 		return (
       <div id='fxContainer'>
       <h2> Base { baseCurrency } Date { date }</h2>
+      <ul className='list-group'>
       { dailyRates }
+      </ul>
       </div>
 		);
 	};
