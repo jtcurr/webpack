@@ -7,8 +7,8 @@ var webpack = require('webpack');
 
 module.exports = {
 	entry: {
-    main: path.resolve(__dirname, 'main.js'),
-    tweets: path.resolve(__dirname, 'tweetsEntryPoint.js')
+    main: path.resolve(__dirname, 'app', 'entryPoints', 'main'),
+    tweets: path.resolve(__dirname, 'app', 'entryPoints', 'tweets')
 	},
 	output: {
 		path: path.join(__dirname, 'build'),
@@ -51,20 +51,24 @@ module.exports = {
 		  {
         test: /\.ts/,
         use: 'ts-loader',
-        include: path.resolve(__dirname, 'ts')
+        include: path.resolve(__dirname, 'app', 'ts')
 		  },
 		  {
 		  	test: /\.ya?ml$/,
 		  	use: ['json-loader', 'yaml-loader'],
-		  	include: path.resolve(__dirname, 'config')
+		  	include: path.resolve(__dirname, 'app', 'config')
 		  }
 		]
 	},
 	resolve: {
     extensions: ['.js', '.coffee', '.ts', '.scss', '.css'],
     alias: {
-    	api$: path.resolve(__dirname, 'api.js'),
-    	Api: path.resolve(__dirname, 'apis')
+    	api$: path.resolve(__dirname, 'app', 'api.js'),
+    	Api: path.resolve(__dirname, 'app', 'apis'),
+    	welcomeUser$: path.resolve(__dirname, 'app', 'welcomeUser.coffee'),
+    	typescript: path.resolve(__dirname, 'app','ts'),
+    	reactApp$: path.resolve(__dirname, 'app', 'react'),
+    	appConfig$: path.resolve(__dirname, 'app', 'config', 'appConfig.yaml')
     }
 	},
 	devServer: {
