@@ -6,10 +6,13 @@ var webpack = require('webpack');
 // var optimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
-	entry: __dirname,
+	entry: {
+    main: path.resolve(__dirname, 'main.js'),
+    tweets: path.resolve(__dirname, 'tweetsEntryPoint.js')
+	},
 	output: {
 		path: path.join(__dirname, 'build'),
-		filename: 'bundle.js'
+		filename: '[name].bundle.js'
 	},
 	module: {
 		rules: [
