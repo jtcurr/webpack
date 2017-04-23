@@ -1,8 +1,8 @@
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var webpack = require('webpack');
-// var htmlWebpackPlugin = require('html-webpack-plugin');
-// var cleanWebpackPlugin = require('clean-webpack-plugin');
+var htmlWebpackPlugin = require('html-webpack-plugin');
+var cleanWebpackPlugin = require('clean-webpack-plugin');
 // var optimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
@@ -13,7 +13,7 @@ module.exports = {
 	},
 	output: {
 		path: path.join(__dirname, 'build'),
-		filename: '[name].bundle.js'
+		filename: '[name].[chunkhash].bundle.js'
 	},
 	module: {
 		rules: [
@@ -22,7 +22,7 @@ module.exports = {
       	loader: 'eslint-loader',
       	enforce: 'pre',
       	exclude: /node_modules/,
-      	query: require(path.resolve(__dirname, 'eslint.config.js'))
+      	options: require(path.resolve(__dirname, 'eslint.config.js'))
       },
 		  {
 		  	test: /\.coffee$/,
@@ -77,15 +77,30 @@ module.exports = {
     }
 	},
 	plugins: [
-	  new ExtractTextPlugin('[name].css'),
+	  new ExtractTextPlugin('[name].[chunkhash].css'),
 	  new webpack.optimize.CommonsChunkPlugin({
 	  	name: 'vendor',
-	  	filename: 'vendor.bundle.js',
+	  	filename: 'vendor.[chunkhash].bundle.js',
 	  	chunks: ['vendor']
 	  }),
 	  new webpack.ProvidePlugin({
 	  	$: 'jquery',
 	  	jQuery: 'jquery'
+	  }),
+	  new htmlWebpackPlugin({
+	  	template: path.resolve(__dirname, 'app', 'entryPoints', 'main', 'index.html'),
+	  	hash: true,
+	  	chunks: ['vendor', 'main']
+	  }),
+	  new htmlWebpackPlugin({
+	  	template: path.resolve(__dirname, 'app', 'entryPoints', 'tweets', 'tweets.html'),
+	  	hash: true,
+	  	chunks: ['vendor', 'tweets'],
+	  	filename: 'tweets.html'
+	  }),
+	  new cleanWebpackPlugin(['build'], {
+	  	root: path.resolve(__dirname),
+	  	verbose: true
 	  })
 	],
 	devServer: {
