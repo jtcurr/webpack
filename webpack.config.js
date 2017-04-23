@@ -1,5 +1,5 @@
 var path = require('path');
-//var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var webpack = require('webpack');
 // var htmlWebpackPlugin = require('html-webpack-plugin');
 // var cleanWebpackPlugin = require('clean-webpack-plugin');
@@ -8,7 +8,8 @@ var webpack = require('webpack');
 module.exports = {
 	entry: {
     main: path.resolve(__dirname, 'app', 'entryPoints', 'main'),
-    tweets: path.resolve(__dirname, 'app', 'entryPoints', 'tweets')
+    tweets: path.resolve(__dirname, 'app', 'entryPoints', 'tweets'),
+    vendor:['jquery', 'bootstrap', 'react', 'react-dom', 'angular']
 	},
 	output: {
 		path: path.join(__dirname, 'build'),
@@ -57,11 +58,15 @@ module.exports = {
 		  	test: /\.ya?ml$/,
 		  	use: ['json-loader', 'yaml-loader'],
 		  	include: path.resolve(__dirname, 'app', 'config')
+		  },
+		  {
+		  	test: /\.json$/,
+		  	loader: 'json-loader'
 		  }
 		]
 	},
 	resolve: {
-    extensions: ['.js', '.coffee', '.ts', '.scss', '.css'],
+    extensions: ['.js', '.coffee', '.ts', '.scss', '.css', '.json'],
     alias: {
     	api$: path.resolve(__dirname, 'app', 'api.js'),
     	Api: path.resolve(__dirname, 'app', 'apis'),
@@ -71,6 +76,18 @@ module.exports = {
     	appConfig$: path.resolve(__dirname, 'app', 'config', 'appConfig.yaml')
     }
 	},
+	plugins: [
+	  new ExtractTextPlugin('[name].css'),
+	  new webpack.optimize.CommonsChunkPlugin({
+	  	name: 'vendor',
+	  	filename: 'vendor.bundle.js',
+	  	chunks: ['vendor']
+	  }),
+	  new webpack.ProvidePlugin({
+	  	$: 'jquery',
+	  	jQuery: 'jquery'
+	  })
+	],
 	devServer: {
 	  contentBase: path.resolve(__dirname, 'build'),
 		inline: true,
