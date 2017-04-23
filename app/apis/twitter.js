@@ -1,4 +1,5 @@
 var mockTweets = require('./MOCKS/MOCK_DATA.json');
+console.log(mockTweets);
 
 module.exports = {
 	getTweets() {
@@ -7,4 +8,4 @@ module.exports = {
 	getTweetsCount() {
 		return mockTweets.length;
 	}
-}
+};

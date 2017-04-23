@@ -1,3 +1,3 @@
 require('angular')
   .module('app', [])
-  .controller('Controller', require('./controller'))
+  .controller('Controller', require('./controller'));

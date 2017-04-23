@@ -1,5 +1,5 @@
-@import './color';
-@import './vendor';
+@import './colors';
+@import './vendors';
 
 body{
   background-color: $mainBGcolor;
@@ -21,3 +21,4 @@ a{
     font-size: 1.4em;
     text-decoration: none;
   }
+}
