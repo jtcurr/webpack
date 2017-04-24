@@ -38,8 +38,10 @@
     "webpackfromterminal": "webpack ./app.js ./bundle.js",
     "webpack": "webpack",
     "webpack-dev-server": "webpack-dev-server",
-    "webpack:build-dev": "webpack --env=dev",
-    "webpack:build-prod": "webpack --env=prod"
+    "webpack:serve-development": "webpack-dev-server --env=development",
+    "webpack:build-production": "webpack --env=production",
+    "webpack:build-development": "webpack --env=development",
+    "webpack:serve-production": "webpack-dev-server --env=production"
   },
   "dependencies": {
     "angular": "^1.6.4",
